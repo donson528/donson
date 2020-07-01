@@ -58,6 +58,10 @@ git push -u origin master
 
 # 第一次如果长时间没反应请按CTRL+C终止  继续上面的命令 第一次有可能会问你YES/NO 请回答yes!!!!
 
-成功后就可以去仓库首页查看了,显示的是readme.md内容
+# 成功后就可以去仓库首页查看了,显示的是readme.md内容
+
+
+>可以进入仓库的setting 设置Repository name =="域名"
+>以后可以通过这个域名直接访问你的index内容
 
 username.github.io
