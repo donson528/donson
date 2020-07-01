@@ -63,5 +63,6 @@ git push -u origin master
 
 >可以进入仓库的setting 设置Repository name =="域名"
 >以后可以通过这个域名直接访问你的index内容
+>以后可以通过这个域名直接访问你的index内容
 
 username.github.io
