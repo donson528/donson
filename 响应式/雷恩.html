@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.staticfile.org/minireset.css/0.0.2/minireset.css">
     <!-- <link rel="stylesheet" href="https: //cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
     <title>RANE°</title>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <!-- <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
@@ -73,18 +74,18 @@
                 <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 text-center">
                     <h4 class="fontfa">it's just beautiful</h4>
                 </div>
-                <div class="butt"><button >GET IT</button></div>
+                <div class="butt"><button>GET IT</button></div>
             </div>
         </div>
     </div>
     <footer>
         <div class="container">
             <div class="row">
-                
+
                 <div class=" col-sm-4 col-md-4 col-lg-4">
-                    
+
                 </div>
-                 
+
                 <div class=" col-sm-4 col-md-4 col-lg-4">
                     <ul class="sma">
                         <li><i class="fa fa-facebook" aria-hidden="true"></i></li>
@@ -92,11 +93,11 @@
                         <li><i class="fa fa-download" aria-hidden="true"></i></li>
                     </ul>
                 </div>
-                 
+
                 <div class=" col-sm-4 col-md-4 col-lg-4">
-                    
+
                 </div>
-                
+
             </div>
         </div>
     </footer>
@@ -115,7 +116,7 @@
             $(".left").css({ marginTop: ($(".right").innerHeight() - $(".left").innerHeight()) / 2 + "px" })
         })
 
-        function anmi(){
+        function anmi() {
             if ($(this).scrollTop() >= $(".banner").offset().top - $(".banner").innerHeight() / 2) {
                 $(".fade1").fadeTo(500, 1, function () {
                     $(".fade2").fadeTo(500, 1, function () {
@@ -136,25 +137,25 @@
             }
             if ($(this).scrollTop() >= $(".banner1").offset().top - $(".banner1").innerHeight() / 2) {
                 $(".left1").animate({
-                    opacity:1,
-                    left:0
-                },2000)
+                    opacity: 1,
+                    left: 0
+                }, 2000)
                 $(".right1").animate({
-                    opacity:1,
-                    right:0
-                },2000)
+                    opacity: 1,
+                    right: 0
+                }, 2000)
 
 
             }
-         
 
-            if ($(this).scrollTop() >= $(".banner1").offset().top - $(".banner1").innerHeight()/2 ) {
-                
-                
-                $(".fontfa").fadeTo(1000,1,function(){
+
+            if ($(this).scrollTop() >= $(".banner1").offset().top - $(".banner1").innerHeight() / 2) {
+
+
+                $(".fontfa").fadeTo(1000, 1, function () {
                     $(".butt").animate({
-                        top:0,
-                        opacity:1
+                        top: 0,
+                        opacity: 1
 
                     })
                 })
