@@ -1,0 +1,1 @@
+{"version":3,"sources":["style.less","<input css 6>"],"names":[],"mappings":"AAAA;EAEQ,aAAA;EACA,uBAAA;EACA,cAAA;CCAP","file":"to.css","sourcesContent":[null,"nav .container {\n  height: 48px;\n  background-color: pink;\n  width: 1200px;\n}\n/*# sourceMappingURL=./style.css.map */"]}
