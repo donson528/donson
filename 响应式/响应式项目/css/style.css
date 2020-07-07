@@ -29,6 +29,9 @@ header .container .logo a {
   padding: 0;
   font-family: 'Srisakdi', cursive;
 }
+header .container .logo a:hover {
+  text-decoration: none;
+}
 header .container nav {
   float: right;
   padding-top: 10px;
