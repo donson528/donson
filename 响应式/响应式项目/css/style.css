@@ -3,6 +3,9 @@
   margin: 0;
   font-family: 'Poppins', sans-serif;
 }
+html {
+  scroll-behavior: smooth;
+}
 body {
   height: 4000px;
 }
@@ -60,9 +63,13 @@ header .container nav .nav {
   margin: 0;
   list-style: none;
   position: relative;
+  background-color: transparent;
 }
 header .container nav .nav > li.dropdown > a {
   font-size: 16px;
+}
+header .container nav .nav > li.dropdown > a:hover {
+  background-color: #fff !important;
 }
 header .container nav .nav > li.dropdown .dropdown-menu {
   background-color: #333333;
@@ -93,6 +100,9 @@ header .container nav .nav > li > a {
   -o-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
+}
+header .container nav .nav > li > a:hover {
+  background-color: #fff !important;
 }
 header .container nav .nav > li:hover {
   background-color: #ffffff;
