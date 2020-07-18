@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/minireset.css/0.0.2/minireset.css">
+    <!-- <link rel="stylesheet" href="https: //cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
+    <title>RANE°</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <!-- <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="./css/bootstrap.css">
+
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 left top-b">
+                    <h3>RANE°</h3>
+                    <p>minimalist weather</p>
+                    <div><button>DOWNLOAD</button></div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 right">
+                    <img src="http://shrn.io/img/shrn-today.png" alt="">
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+    <div class="banner">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 ">
+                    <img src="http://shrn.io/img/shrn-11.png" class="fade1" alt="">
+                    <h4 class="fade4">11°</h4>
+                </div>
+
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 ">
+                    <img src="http://shrn.io/img/shrn-55.png" class="fade2" alt="">
+                    <h4 class="fade5">55°</h4>
+                </div>
+
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 ">
+                    <img src="http://shrn.io/img/shrn-9.png" class="fade3" alt="">
+                    <h4 class="fade6">-9°</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="banner1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 left1">
+                    <img src="http://shrn.io/img/shrn-details.png" alt="">
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 right1">
+                    <img src="http://shrn.io/img/shrn-forecast.png" alt="">
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="banner2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 text-center">
+                    <h4 class="fontfa">it's just beautiful</h4>
+                </div>
+                <div class="butt"><button>GET IT</button></div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+
+                <div class=" col-sm-4 col-md-4 col-lg-4">
+
+                </div>
+
+                <div class=" col-sm-4 col-md-4 col-lg-4">
+                    <ul class="sma">
+                        <li><i class="fa fa-facebook" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-twitter" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-download" aria-hidden="true"></i></li>
+                    </ul>
+                </div>
+
+                <div class=" col-sm-4 col-md-4 col-lg-4">
+
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <!-- <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script> -->
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <!-- <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <script>
+
+        $(".left").css({ marginTop: ($(".right").innerHeight() - $(".left").innerHeight()) / 2 + "px" })
+        $(window).on("resize", function () {
+            console.log()
+            console.log()
+            $(".left").css({ marginTop: ($(".right").innerHeight() - $(".left").innerHeight()) / 2 + "px" })
+        })
+
+        function anmi() {
+            if ($(this).scrollTop() >= $(".banner").offset().top - $(".banner").innerHeight() / 2) {
+                $(".fade1").fadeTo(500, 1, function () {
+                    $(".fade2").fadeTo(500, 1, function () {
+                        $(".fade3").fadeTo(500, 1, function () {
+                            $(".fade4").fadeTo(500, 1, function () {
+                                $(".fade5").fadeTo(500, 1, function () {
+                                    $(".fade6").fadeTo(500, 1, function () {
+                                    }
+                                    )
+                                }
+                                )
+                            }
+                            )
+                        }
+                        )
+                    })
+                })
+            }
+            if ($(this).scrollTop() >= $(".banner1").offset().top - $(".banner1").innerHeight() / 2) {
+                $(".left1").animate({
+                    opacity: 1,
+                    left: 0
+                }, 2000)
+                $(".right1").animate({
+                    opacity: 1,
+                    right: 0
+                }, 2000)
+
+
+            }
+
+
+            if ($(this).scrollTop() >= $(".banner1").offset().top - $(".banner1").innerHeight() / 2) {
+
+
+                $(".fontfa").fadeTo(1000, 1, function () {
+                    $(".butt").animate({
+                        top: 0,
+                        opacity: 1
+
+                    })
+                })
+            }
+
+        }
+        anmi()
+        $(window).on("scroll", function () {
+            anmi()
+        })
+        $(".top-b h3").fadeTo(1000, 1, function () {
+            $(".top-b p").fadeTo(1000, 1, function () {
+                console.log(111)
+                $(".top-b div").stop().animate({
+                    opacity: 1,
+                    top: 0
+                }, 1000)
+
+
+            })
+        })
+
+    </script>
+</body>
+
+</html>

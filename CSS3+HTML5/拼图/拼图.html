@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .box {
+            /* width: 500px;
+            height: 500px; */
+            /* border: 20px solid red; */
+            margin: auto;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .star {
+            width: 700px;
+            display: flex;
+            flex-wrap: wrap;
+            height: 524px    ;
+            position: relative;
+        }
+
+        .star li {
+            list-style: none;
+            background-color: aqua;
+            box-shadow: 0 0 0 1px white inset;
+            border: 1px solid white;
+            border-radius: 5px;
+            position: absolute;
+            transition: all 0.3s;
+        }
+
+        .set {
+            /* width: 200px; */
+            margin-left: 50px;
+
+
+        }
+  .set div{
+      margin: 10px;
+  }
+        p {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul class="star">
+
+        </ul>
+        <div class="set">
+            <input type="number" value="3" min="2" max="9" placeholder="请输入你想要的等级" class="level">
+            <button>开始</button>
+            <div class="step">
+                您目前的剩余的步数:
+                <span></span>
+            </div>
+            <div class="grade">
+                您目前的的分数:
+                <span></span>
+            </div>
+            <dt>
+                <dh>说明：</dh>
+            <dd>-点击开始，小图片将随机打乱；</dd>
+            <dd>-拖动小图片可交换位置，顺序完全正确则为成功；</dd>
+            <dd>-通过数字选择你想要的等级；</dd>
+            <dd>-等级不同会获取相应的分数；</dd>
+            </dt>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        // var size = 3
+        var url = "女装茨木.png"
+        var grade = 0
+        var check
+         
+        function leve(size) {
+            for (var i = 0; i < size * size; i++) {
+                var node = $('<li></li>')
+                node.attr("id", "id" + i)
+                node.css({
+                    width: 100 / size + "%",                                                                                              
+                    height: 100 / size + "%",
+                    background: 'url(' + url + ')',
+                    backgroundSize: size * 100 + "%" + "auto",
+                    backgroundPosition: -i % size * 100 + "%" + -Math.floor(i / size) * 100 + "%",
+
+                })
+                node[0].draggable = "true"
+                $(".star").append(node)
+            }
+
+            function radom() {
+                return Math.floor(Math.random() * (size * size))
+
+            }
+            var num = size * size * size
+            $(".step span").html(num)
+            $(".grade span").html(grade)
+
+            function daluan() {
+                var arr = []
+                for (var i = 0; i < size * size; i++) {
+                    arr.push(i)
+                }
+
+                var tmp = []
+                for (var i = 0; i < size * size; i++) {
+                    tmp.push(arr.splice(Math.floor(Math.random() * arr.length), 1)[0])
+                }
+                $(".star li").each(function (index, ele) {
+                    $(ele).css({
+                        left: (tmp[index] % size) * (100 / size) + "%",
+                        top: Math.floor(tmp[index] / size) * (100 / size) + "%"
+                    })
+
+
+                })
+            }
+
+            daluan()
+
+            $(".star li").each(function (index, ele) {
+
+                // 点击时
+
+                ele.ondragstart = function (e) {
+                    // 设置属性
+                    e.dataTransfer.setData("giao", e.target.id);
+                    if (check) {
+                        alert("你已经完成了拼图,请重新开始")
+                        return
+                    }
+                };
+                // 在盒子上移动时
+                ele.ondragover = function (e) {
+
+                    e.preventDefault();
+                };
+                // 在盒子上放下时
+                ele.ondrop = function (e) {
+                    
+                    $(".step span").html(num)
+                    if (num <= 0) {
+                        grade -= 50
+                        $(".grade span").html(grade)
+                        alert("没有已经步数您已经输了.尝试重新开始吧")
+                        return
+                    }
+                    num--
+                    var e1 = e.target;
+                    var e2 = document.getElementById(
+                        e.dataTransfer.getData("giao")
+                    );
+                    console.log(111);
+                    // 交叉互换定位
+                    var tmp = {
+                        top: e1.style.top,
+                        left: e1.style.left,
+                    };
+                    e1.style.top = e2.style.top;
+                    e1.style.left = e2.style.left;
+
+                    e2.style.top = tmp.top;
+                    e2.style.left = tmp.left;
+
+                    var star = document.querySelectorAll(".star li")
+                    check = Array.prototype.every.call(star, function (element, index) {
+                        return (
+                            parseInt(element.style.top) ==
+                            parseInt(
+                                Math.floor(index / size) * (100 / size) +
+                                "%"
+                            ) &&
+                            parseInt(element.style.left) ==
+                            parseInt((index % size) * (100 / size) + "%")
+                        );
+                    });
+                    // 循环每个li的位置是否为正确.全部正确的时候返回 true
+                    console.log(check);
+                    if (check) {
+                        alert("成功");
+                        grade += 100*size
+                        $(".grade span").html(grade)
+                    }
+
+                }
+            })
+
+
+
+
+        }
+        leve(3)
+        $("button").click(function () {
+            check = null
+            if ($(".level").val() <= 1 || $(".level").val() >= 10) {
+
+                alert("请输入2倍以上10倍以下的数")
+                return
+            }
+            $(".star").html("")
+            leve(parseInt($(".level").val()))
+        })
+
+
+    </script>
+</body>
+
+</html>

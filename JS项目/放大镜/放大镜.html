@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            /* overflow: hidden; */
+           display: flex;
+           justify-content: center;
+           padding-top: 75px;
+        }
+        .blow {
+            text-align: center;
+            /* margin: 150px auto; */
+            width: 600px;
+            height: 600px;
+            float: left;
+            cursor: crosshair;
+            position: relative;
+
+        }
+
+        input {
+            width: 100px;
+            height: 40px;
+            font-size: 36px;
+            color: lightsteelblue;
+            border-radius: 25px;
+            line-height: 40px;
+            text-align: center;
+            border: 2px solid #f66229;
+            outline: none;
+        }
+
+        .blow img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .blow .mask {
+            width: 250px;
+            height: 250px;
+            /* background: url("./img/日和坊.jpg") no-repeat; */
+            background-repeat: no-repeat;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border: 5px solid #da5583;
+            border-radius: 50%;
+            box-sizing: border-box;
+        }
+
+        .blow b {
+            display: inline-block;
+
+            border-radius: 50%;
+            cursor: pointer;
+            height: 40px;
+            border: 2px solid #d28b45;
+            width: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 34px;
+
+        }
+
+        .zoom {
+            width: 600px;
+            height: 600px;
+            /* border: 1px solid red; */
+            float: left;
+            margin-left: 10px;
+            /* background: url("./img/0005.png"); */
+            /* background-size: 200% auto; */
+            /* background-repeat: no-repeat; */
+            /* display: none; */
+            overflow: hidden;
+        }
+
+        .zoom img {
+            width: 200%;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="blow left">
+            <img src="./img/日和坊.jpg" alt="">
+            <b class="subtract">-</b>
+            <input type="number" min="0"   value="2">
+            <b class="add">+</b>
+        </div>
+       
+        <!-- <div class="blow right">
+            <img src="./img/sp骑驴.jpg" alt="">
+            <b class="subtract">-</b>
+            <input type="text" value="3">
+            <b class="add">+</b>
+        </div>
+        <div class="blow bottom">
+            <img src="./img/月之羽姬.jpg" alt="">
+            <b class="subtract">-</b>
+            <input type="text" value="10">
+            <b class="add">+</b>
+        </div> -->
+    </div>
+    <script src="https://cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
+    <script src="jquery.color.js"></script>
+    <script>
+
+        //jq扩展板 
+            var maskW = $(".blow").width() / 3
+            var maskH = $(".blow").height() / 3
+            console.log(maskW, maskH)
+            $(".mask").css({
+                width: maskW + "px",
+                height: maskH + "px"
+            })
+          
+            $(".blow").mousemove(function (e) {
+            var x = e.pageX;
+            var y = e.pageY;
+
+            if (x <= maskW / 2) x = maskW / 2;
+            if (x >= $(".blow img").width() - maskW / 2) x = $(".blow img").width() - maskW / 2;
+            if (y <= maskH / 2) y = maskH / 2;
+            if (y >= $(".blow img").height() - maskH / 2) y = $(".blow img").height() - maskH / 2;
+
+       
+            $(".mask").css({
+                top: y - maskW / 2 + "px",
+                left: x - maskH / 2 + "px"
+            })
+
+          
+        })
+        //由于谁使用this 就指向谁 所以省略第一个参 数只需要第二个倍数的值的参数
+        $.fn.blowu = function (mask) {
+            //我们需要自己动态生成mask 把他放到我们输入的参数里面
+            this.append('<div class="mask"></div>')
+
+            //根据输入的参数选择要改变的倍数 
+            // 根据参数获取参数的图片并让图片变成mask的背景图片
+
+           
+
+
+            this.find(".mask").css(
+
+                {
+                    backgroundImage: 'url(' + this.find('img').attr('src') + ')',
+                    // backgroundSize: this.width() * mask + 'px ' + this.height() * mask + 'px'
+                    backgroundSize: this.width() * mask + 'px ' + this.height() * mask + 'px',
+
+
+                }
+            )
+
+
+            this.find("span").css(
+
+                {
+                    backgroundImage: 'url(' + this.find('img').attr('src') + ')',
+                    backgroundSize: this.width() * mask + 'px ' + this.height() * mask + 'px',
+
+                }
+            )
+            this.hover(function () {
+                $(this).find("span").animate(
+                    {
+                        width: "600px",
+                        height: "600px",
+                        left: "610px"
+                    }, 100
+                )
+            }, function () {
+                $(this).find("span").animate(
+                    {
+                        width: "0",
+                        height: "0",
+                        left: "600"
+                    }, 100
+                )
+            })
+
+            this.mousemove(function (e) {
+
+                //这里面的this就是指向使用函数的元素
+
+                //获取鼠标相对当前盒子的位置
+
+                var x = e.pageX - $(this).offset().left
+                var y = e.pageY - $(this).offset().top
+
+                // 获取mask的宽高
+                var w = $(this).find(".mask").outerWidth()
+                var h = $(this).find(".mask").outerHeight()
+
+                // 当鼠标进去图片时让mask显示
+                $(this).find('.mask').show()
+
+                //当鼠标移除图片时让mask消失 并结束当前函数
+                if (x > $(this).width() || x < 0 || y >= $(this).height() || y < 0) {
+                    $(this).find('.mask').hide()
+                    return
+                }
+
+                //改变mask的位置
+                $(this).find(".mask").css(
+                    {
+                        //w为了让鼠标处于mask正中间需要减去mask的高度的一半
+                        left: x - w / 2 + 'px',
+                        top: y - h / 2 + 'px',
+
+                        //让mask的背景图片进行偏移 值为
+                        backgroundPositionX: -(x * mask + 5 - w / 2) + 'px',
+                        backgroundPositionY: -(y * mask + 5 - h / 2) + 'px',
+                        // backgroundPositionX: x -  $(this).find('.mask').height()  / 2 + 'px',
+                        // backgroundPositionY: y -  $(this).find('.mask').width()  / 2  + 'px',
+                    }
+                )
+
+
+
+            })
+        }
+
+
+        //扩展 根据input改变倍数
+
+        function fn() {
+            $("input").each(function (index, ele) {
+
+                $(this).parent().blowu($(this).val())
+
+
+            })
+        }
+
+        $("input").change(function () {
+            $("input").each(function (index, ele) {
+
+
+                $(this).parent().blowu($(this).val())
+
+
+            })
+        })
+        fn()
+        $("input").on("input", function () {
+            fn()
+        })
+        $(".subtract").click(function () {
+            var vals = $(this).next().val()
+            if ($(this).next().val()==0) {
+                return
+            }
+            vals--
+            $(this).next().val(vals)
+            $(this).stop().animate({
+                backgroundColor: "rgba(0, 0, 255, 0.1)",
+
+            }, 100, function () {
+                $(this).stop().animate({
+                    backgroundColor: "white"
+                })
+            })
+            fn()
+        })
+        $(".add").click(function () {
+
+            var vala = $(this).prev().val()
+
+            $(this).stop().animate({
+                backgroundColor: "rgba(0, 0, 255, 0.1)",
+
+            }, 100, function () {
+                $(this).stop().animate({
+                    backgroundColor: "white"
+                })
+            })
+            vala++ -
+                $(this).prev().val(vala)
+            fn()
+        })
+    </script>
+</body>
+
+</html>
