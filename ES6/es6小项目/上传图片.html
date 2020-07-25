@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/minireset.css/0.0.2/minireset.css">
+    <title>Document</title>
+    <style>
+        .file {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            cursor: pointer;
+            line-height: 100px;
+            background-color: #f7f7f9;
+            border: 1px solid   greenyellow;
+        }
+
+        input {
+            width: 100px;
+            height: 100px;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .aaa {
+            width: 50px;
+            height: 50px;
+            left: 25px;
+            top: 25px;
+            position: absolute;
+            cursor: pointer;
+            pointer-events: none;
+        }
+
+        .img {
+            width: 1100px;
+            margin: 150px auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .smallbox {
+            overflow: hidden;
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            margin: 10px;
+            position: relative;
+        }
+
+        .creen {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .cuneen {
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            -webkit-user-drag: none;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .smallbox i {
+            position: absolute;
+            top: -8px;
+            overflow: hidden;
+            right: -8px;
+            color: red;
+            font-size: 16px;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            /* transform: rotate(45deg); */
+            border-radius: 50%;
+            background: url(cha.png) no-repeat;
+            background-size: cover;
+        }
+
+        /* .smallbox i::before{
+            font-size: 40px;
+
+            transform: rotate(-45deg);
+            display: inline-block;
+            content: 'X';
+        } */
+        .mask {
+            position: fixed;
+            top: 20px;
+            left: 500px;
+            width: 600px;
+            height: 800px;
+            border-top: 30px solid black;
+            border-bottom: 30px solid black;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px 0;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="img">
+        <div class="file">
+            <input class="uploadImg" type="file" name="file" multiple id="file" accept="image/*">
+            <img src="./相机_wps图片.png" alt="" class="aaa">
+        </div>
+        <div class="mask">
+
+        </div>
+    </div>
+    <script>
+        var img = document.querySelector(".img")
+        var uploadImg = document.querySelector(".uploadImg")
+        var mask = document.querySelector(".mask")
+
+        uploadImg.oninput = function () {
+            let reader
+            for (let i = 0; i < this.files.length; i++) {
+                reader = new FileReader();
+                reader.readAsDataURL(this.files[i])
+                // console.log(this.files[i].type);
+                var rFilter = /^(image\/bmp|image\/gif|image\/jpeg|image\/png|image\/tiff)$/i;
+                if ( !rFilter.test(this.files[i].type)) {
+                    // return
+                    continue
+                }
+
+                reader.onload = function () {
+                    //读取完成后，数据保存在对象的result属性中
+                 
+                    var div = document.createElement("div")
+                    div.className = "smallbox"
+
+                    // console.log(this.reader);
+                    var imgs = document.createElement("img")
+
+                    var i = document.createElement("i")
+                    i.onclick = function () {
+                        this.parentNode.remove()
+                    }
+                    imgs.src = this.result
+                    imgs.className = "creen"
+                    imgs.onclick = function () {
+                        let clone = imgs.cloneNode(true)
+                        clone.className = "cuneen"
+                        mask.innerHTML = ""
+                        mask.style.display = "block"
+                        mask.appendChild(clone)
+                    }
+                    div.appendChild(imgs)
+                    div.appendChild(i)
+                    img.insertBefore(div, img.children[0])
+                }
+            }
+        }
+        mask.onclick = function () {
+            this.style.display = "none"
+        }
+    </script>
+</body>
+
+</html>

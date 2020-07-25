@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/minireset.css/0.0.2/minireset.css">
+    <title>Document</title>
+    <style>
+        body {
+
+            display: flex;
+            justify-content: center;
+        }
+
+        .box {
+            font-size: 0;
+            position: relative;
+        }
+
+        .img {
+            width: 600px;
+            height: 337px;
+            position: relative;
+            background: url(./1366x768.jpg);
+
+        }
+
+        .white {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            top: 200px;
+            left: 300px;
+        }
+
+        .bg {
+            position: absolute;
+            /* top: 200px; */
+            /* left: 300px; */
+            width: 80px;
+            height: 80px;
+            background: url(./1366x768.jpg);
+            /* background-position: -300px -200px; */
+
+        }
+
+        .hua {
+            margin-top: 5px;
+            width: 100%;
+            height: 40px;
+            background-color: #f7f9fa;
+            position: relative;
+            border-radius: 5px;
+            border: 1px solid #e6e8eb;
+        }
+
+        .wi {
+            box-sizing: border-box;
+            border: 1px solid #1991fa;
+            width: 80px;
+            height: 100%;
+            border-radius: 5px;
+            background-color: #d1e9fe;
+        }
+
+        .kuai {
+            position: absolute;
+            width: 80px;
+            height: 100%;
+            color: black;
+            background-color: teal;
+            cursor: pointer;
+            font-size: 26px;
+            line-height: 40px;
+            top: 0;
+            border-radius: 5px;
+            left: 0;
+            text-align: center;
+        }
+
+        .move {
+            background-color: #1991fa;
+        }
+
+        .succ {
+            background-color: #52ccba;
+        }
+
+        .shibai {
+            background-color: #f57a7a;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="img">
+            <!-- <img src="./1366x768.jpg" alt=""> -->
+            <div class="white">
+
+            </div>
+            <div class="bg">
+
+            </div>
+        </div>
+        <div class="hua">
+
+            <div class="wi"></div>
+            <div class="kuai"></div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    let obj = {
+        widths: $(".img").width(),
+        heights: $(".img").height(),
+        offwidth: $(".white").width(),
+        offheight: $(".white").height(),
+        randoms() {
+            // 白块随机坐标
+            let randomleft = Math.floor(Math.random() * (this.widths / 2) + this.widths / 2)
+            let randomtop = Math.floor(Math.random() * (this.heights))
+            if (randomleft >= (this.widths - this.offwidth)) {
+                randomleft = (this.widths - this.offwidth)
+            }
+            if (randomtop >= (this.heights - this.offheight)) {
+                randomtop = this.heights - this.offheight
+            }
+            //图片块随机位置
+            let imgleft = Math.floor(Math.random() * (this.widths / 2))
+
+            if (imgleft >= (this.widths / 2 - this.offwidth)) {
+                imgleft = (this.widths / 2 - this.offwidth)
+            }
+            // 返回一个随机坐标对象对象
+            return {
+                kuaileft: randomleft,
+                kuaitop: randomtop,
+                imgleft: imgleft
+            }
+        },
+        // 设置样式
+        seting() {
+            let position = this.randoms()
+            $(".white").css({
+                left: position.kuaileft,
+                top: position.kuaitop,
+
+            })
+            $(".bg").css({
+                left: position.imgleft,
+                top: position.kuaitop,
+                backgroundPositionX: -position.kuaileft,
+                backgroundPositionY: -position.kuaitop,
+            })
+            // 用来判断鼠标是否松开
+            let cheak = false
+            // 当鼠标在移动块上按下时
+            $(".kuai").on("mousedown", function (e) {
+                onX = e.clientX
+                onY = e.clientY
+                cheak = true
+            })
+            $(".kuai").hover(function () {
+                // this.addClass("move")
+                $(this).removeClass("shibai succ").addClass("move")
+
+            }, function () {
+                $(this).removeClass("move")
+            })
+            // 当鼠标松开时
+            $(document).on("mouseup", function (e) {
+                if (cheak) {
+                    let left = $(".kuai").position().left
+                    console.log(left,position.kuaileft);
+                    if (left >= (position.kuaileft - 10) && left <= (position.kuaileft + 10)) {
+                        alert("成功")
+
+                        $(".kuai").removeClass("shibai move").addClass("succ")
+                        $(".wi").css({
+                            backgroundColor: "#d2f4ef",
+                            borderColor: "#5bcebd"
+                        })
+                    } else {
+                        alert("验证失败")
+                        $(".kuai").removeClass("shibai move").addClass("shibai")
+                        $(".kuai").stop().animate({
+                            left: 0
+
+                        }, 1000)
+                        $(".bg").stop().animate({
+                            left: 0
+
+                        }, 1000)
+                        
+                        $(".wi").stop().animate({
+                            width: obj.offwidth,
+                           
+
+                        }, 1000)
+                    }
+
+                    cheak=false
+                }
+            })
+            // 当鼠标按下移动时
+            $(document).on("mousemove", function (e) {
+            
+                e = e || window.event
+                if (e.buttons === 1) {
+                    var offX = e.clientX
+                    var mouseX = offX - onX
+
+                    if (mouseX <= 0) {
+                        mouseX = 0
+                    } else if (mouseX >= (obj.widths - obj.offwidth)) {
+                        mouseX = (obj.widths - obj.offwidth)
+                    }
+
+                    $(".kuai").stop().animate({
+                        left: mouseX
+
+                    }, 0)
+                    $(".bg").stop().animate({
+                        left: mouseX
+
+                    }, 0)
+                    $(".wi").stop().animate({
+                        width: mouseX + obj.offwidth
+
+                    }, 0)
+
+                }
+            })
+        }
+
+    }
+    obj.seting()
+</script>
+
+</html>

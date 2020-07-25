@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdn.staticfile.org/minireset.css/0.0.2/minireset.css">
-    <link href="http://fonts.googleapis.com/css?family=Srisakdi:400,700&amp;subset=latin-ext,thai,vietnamese"
+    <!-- <link href="http://fonts.googleapis.com/css?family=Srisakdi:400,700&amp;subset=latin-ext,thai,vietnamese"
         rel="stylesheet">
     <link
         href="http://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext"
-        rel="stylesheet">
-    <link rel="stylesheet" href="./css/index.css">
+        rel="stylesheet"> -->
+    <link rel="stylesheet" href="./css/style.css">
     <title>个人网站</title>
     <style>
         body {
@@ -20,15 +20,17 @@
             background-size: 100%;
 
         }
+        /* 320*192 */
     </style>
 </head>
 
 <body>
+    
     <div class="wrapper horizontal css3">
         <h3>CSS3+HTML5</h3>
         <ul class="container">
             <li class="cards-list">
-                <a href="./CSS3+HTML5/iHover/transform.html">
+                <a href="./CSS3+HTML5/iHover/transform.html" target="">
                 <div class="img"><img src="./images/ihover.png" alt=""> </div>
                 </a>
                 <div class="main-con">
@@ -37,6 +39,7 @@
                     <p class="label">donson</p>
                 </div>
             </li>
+
             <li class="cards-list">
                 <a href="./CSS3+HTML5/翻转时钟/index.html">
                 <div class="img"><img src="./images/时钟.png" alt=""></div>
@@ -47,6 +50,7 @@
                     <p class="label">donson</p>
                 </div>
             </li>
+
             <li class="cards-list">
                 <a href="./CSS3+HTML5/拼图/拼图.html">
                 <div class="img"><img src="./images/拼图.png" alt=""></div>
@@ -121,6 +125,49 @@
             </li>
         
 
+        </ul>
+        <i class="btn-direct btn-left">
+            <span class="shift-left"></span>
+        </i>
+        <i class="btn-direct btn-right">
+            <span class="shift-right"></span>
+        </i>
+    </div>
+    <div class="wrapper horizontal ES6">
+        <h3>ES6项目</h3>
+        <ul class="container">
+            <li class="cards-list">
+                <a href="./ES6/疫情查询/疫情查询.html">
+                <div class="img"><img src="./images/疫情信息.png" alt=""> </div>
+                </a>
+                <div class="main-con">
+                    <h4 class="name">疫情信息(打开时请切换成手机端)</h4>
+                    <p class="content">利用ajax导出信息(api信息更新可能会比较慢,导致较昨日会变成0)</p>
+                    <p class="label">donson</p>
+                </div>
+            </li>
+
+            <li class="cards-list">
+                <a href="./ES6/es6小项目/上传图片.html">
+                <div class="img"><img src="./images/上传图片.png"> </div>
+                </a>
+                <div class="main-con">
+                    <h4 class="name">上传并查看图片</h4>
+                    <p class="content">利用input file实现上村图片</p>
+                    <p class="label">donson</p>
+                </div>
+            </li>
+
+            <li class="cards-list">
+                <a href="./ES6/es6小项目/滚动滑块.html">
+                <div class="img"><img src="./images/验证滑块.png" alt=""> </div>
+                </a>
+                <div class="main-con">
+                    <h4 class="name">移动滑块实现验证</h4>
+                    <p class="content"></p>
+                    <p class="label">donson</p>
+                </div>
+            </li>
         </ul>
         <i class="btn-direct btn-left">
             <span class="shift-left"></span>
@@ -320,6 +367,24 @@
             navigation: {
                 nextEl: $('.HTML .btn-right'),
                 prevEl: $('.HTML .btn-left')
+            }
+        });
+        var backdrop3 = new Backdrop($('.ES6>.container'), {
+            transition: {
+                value: '500ms cubic-bezier(0.34, 1.56, 0.64, 1)', // easeOutBack
+                waitForTransition: true,
+            },
+            autoplay: {
+                enable: true,
+                delay: 5000,
+            },
+            isClickSlide: true,
+            opacity: .5,
+            scale: .9,
+            transformOrigin: 'center bottom',
+            navigation: {
+                nextEl: $('.ES6 .btn-right'),
+                prevEl: $('.ES6 .btn-left')
             }
         });
 
