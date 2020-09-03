@@ -25,7 +25,39 @@
 </head>
 
 <body>
-    
+    <div class="wrapper horizontal VUE">
+
+        <h3>vue项目</h3>
+        <ul class="container">
+            <li class="cards-list">
+                <a href="./ruixingcoff/index.html">
+                <div class="img"><img src="./images/咖啡.png" alt=""> </div>
+                </a>
+                <div class="main-con">
+                    <h4 class="name">瑞幸咖啡商场</h4>
+                    <p class="content">VUE项目</p>
+                    <p class="label">donson</p>
+                </div>
+            </li>
+            <li class="cards-list">
+                <a href="./wangyimusic/dist/index.html">
+                <div class="img"><img src="./images/网易云.png" alt=""> </div>
+                </a>
+                <div class="main-con">
+                    <h4 class="name">网易云音乐</h4>
+                    <p class="content">VUE项目</p>
+                    <p class="label">donson</p>
+                </div>
+            </li>
+        </ul>
+        <i class="btn-direct btn-left">
+            <span class="shift-left"></span>
+        </i>
+        <i class="btn-direct btn-right">
+            <span class="shift-right"></span>
+        </i>
+    </div>
+
     <div class="wrapper horizontal css3">
         <h3>CSS3+HTML5</h3>
         <ul class="container">
@@ -385,6 +417,24 @@
             navigation: {
                 nextEl: $('.ES6 .btn-right'),
                 prevEl: $('.ES6 .btn-left')
+            }
+        });
+        var backdrop4 = new Backdrop($('.VUE>.container'), {
+            transition: {
+                value: '500ms cubic-bezier(0.34, 1.56, 0.64, 1)', // easeOutBack
+                waitForTransition: true,
+            },
+            autoplay: {
+                enable: true,
+                delay: 5000,
+            },
+            isClickSlide: true,
+            opacity: .5,
+            scale: .9,
+            transformOrigin: 'center bottom',
+            navigation: {
+                nextEl: $('.VUE .btn-right'),
+                prevEl: $('.VUE .btn-left')
             }
         });
 
