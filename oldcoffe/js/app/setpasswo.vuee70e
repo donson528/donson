@@ -1,0 +1,4 @@
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"setpasswo"},[_c('van-nav-bar',{attrs:{"title":"修改密码","left-text":"返回","fixed":""},on:{"click-left":_vm.back}}),_c('van-field',{attrs:{"type":"password","label":"旧密码"},model:{value:(_vm.oldPassword),callback:function ($$v) {_vm.oldPassword=$$v},expression:"oldPassword"}}),_c('van-field',{attrs:{"type":"password","label":"新密码"},model:{value:(_vm.password),callback:function ($$v) {_vm.password=$$v},expression:"password"}}),_c('van-button',{attrs:{"type":"danger"},on:{"click":_vm.set}},[_vm._v("修改")])],1)}
+var staticRenderFns = []
+
+export { render, staticRenderFns }

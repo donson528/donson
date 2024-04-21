@@ -1,0 +1,4 @@
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"Safety"},[_c('van-nav-bar',{attrs:{"title":"安全中心","left-text":"返回","fixed":""},on:{"click-left":_vm.back}}),_c('div',{staticClass:"infoset"},_vm._l((_vm.infomains),function(value,index){return _c('van-cell',{key:index,attrs:{"title":value.title,"is-link":"","to":{name:value.name}},on:{"click":function($event){return _vm.myinfo(value.title)}}})}),1),_c('van-button',{attrs:{"type":"primary"},on:{"click":_vm.backinfo}},[_vm._v("退出登录")])],1)}
+var staticRenderFns = []
+
+export { render, staticRenderFns }
